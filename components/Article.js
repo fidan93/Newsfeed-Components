@@ -86,8 +86,61 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: "Some title text",
+    date: "Sep 2nd,1993",
+    firstParagraph: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit quae dicta ipsa accusantium. Ea dolor nam, eum doloremque in nostrum, error enim quia ipsa, illum placeat id at doloribus saepe?",
+    secondParagraph: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, facilis earum! Nihil obcaecati vel, voluptate omnis corrupti nisi, tempore tenetur adipisci inventore laudantium commodi delectus enim nam minus, voluptates ex.",
+    thirdParagraph: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officiis beatae sint culpa consequatur vero unde atque odit nisi rerum tenetur. Quia molestiae aliquid necessitatibus suscipit ducimus, ipsum ratione harum consequatur."
   }
+
 ];
+
+const articles = document.querySelector(".articles");
+
+function articleMaker(d){
+const article = document.createElement('div');
+const title = document.createElement("h2");
+const date = document.createElement("p");
+const expandBtn = document.createElement("span");
+
+article.classList.add("article");
+date.classList.add("date");
+expandBtn.classList.add("expandButton");
+
+title.textContent = d.title;
+date.textContent = d.date;
+
+
+const arr = ['first','second','third'];
+
+
+expandBtn.textContent = '+';
+article.appendChild(title);
+article.appendChild(date);
+arr.forEach(item => {
+  let newP = document.createElement('p');
+   newP.textContent = d[`${item}Paragraph`];
+   article.appendChild(newP);
+})
+article.appendChild(expandBtn);
+
+expandBtn.addEventListener('click', (event) => {
+//article.classList.add("article-open");
+article.classList.toggle('article-open');
+})
+return article;
+}
+
+data.forEach(elem => {
+const compon = articleMaker(elem);
+articles.appendChild(compon);
+})
+
+function addArticle(arr,obj){
+return arr.push({})
+}
 
 /*
   Step 1: Write a component called 'articleMaker' to create an article.
